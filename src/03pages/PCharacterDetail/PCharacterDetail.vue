@@ -31,13 +31,18 @@
 <script lang="ts" setup>
 import { characterApi, CharacterType } from 'entities/EСharacters'
 import { ROUTE_NAMES } from 'shared/constants'
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const characterId = parseInt(route.params.id as string, 10)
 const isLoading = ref(false)
 const character = ref<CharacterType | null>(null)
+
+const characterId = computed(() => {
+  return parseInt(route.params.id as string, 10)
+})
+
+watch(route, () => fetchCharacter(characterId.value))
 
 const parseEpisodeNumber = (url: string) => {
   const parts = url.split('/')
@@ -49,12 +54,8 @@ const parseEpisodeNumber = (url: string) => {
 const fetchCharacter = async (id: number) => {
   isLoading.value = true
 
-  console.log(characterId)
-
   try {
-    const response = await characterApi.getCharacter(id)
-
-    character.value = response
+    character.value = await characterApi.getCharacter(id)
   } catch (error) {
     console.error(error)
   } finally {
@@ -63,7 +64,9 @@ const fetchCharacter = async (id: number) => {
 }
 
 onMounted(() => {
-  fetchCharacter(characterId)
+  console.log('Сработал скрипт')
+
+  fetchCharacter(characterId.value)
 })
 </script>
 

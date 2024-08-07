@@ -102,5 +102,12 @@ onMounted(async () => {
   &__content-list-item {
     text-decoration: none;
   }
+
+  &__pagination {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+    margin-top: 40px;
+  }
 }
 </style>

@@ -36,8 +36,12 @@ const customNextIcon = shallowRef({
 <style lang="scss" scoped>
 .s-pagination {
   :deep(.el-pagination) {
+    display: flex;
+    gap: 8px;
+
     button {
-      color: var(--color-black);
+      color: var(--color-white);
+      background-color: inherit;
 
       .el-icon {
         font-size: 24px;
@@ -54,7 +58,7 @@ const customNextIcon = shallowRef({
         font-weight: 400;
         font-size: 16px;
         line-height: 24px;
-        color: var(--color-black);
+        color: var(--color-white);
         background-color: inherit;
         padding: 0;
 
@@ -64,12 +68,13 @@ const customNextIcon = shallowRef({
 
         &.is-active {
           color: var(--color-white);
-          background-color: var(--color-primary);
+          background-color: #42b4ca;
         }
       }
 
       .more {
         min-width: 24px;
+        background-color: inherit;
         padding: 0;
 
         &::before {
@@ -78,7 +83,7 @@ const customNextIcon = shallowRef({
           height: 24px;
           display: flex;
           justify-content: center;
-          color: var(--color-black);
+          color: var(--color-white);
         }
 
         svg {

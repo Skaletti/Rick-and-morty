@@ -19,6 +19,7 @@
               <td>
                 <router-link :to="`/location/${location.id}`">
                   {{ location.name }}
+                  <s-icon name="chevrons-chevron_right" />
                 </router-link>
               </td>
               <td>{{ location.type }}</td>
@@ -40,6 +41,7 @@
 <script lang="ts" setup>
 import { locationApi, LocationType, LocationApiResponseType } from 'entities/ELocations'
 import { SPagination } from 'shared/ui'
+import SIcon from 'shared/ui/SIcon/ui/SIcon.vue'
 import { onMounted, ref } from 'vue'
 
 const isLoading = ref(false)
@@ -102,12 +104,26 @@ onMounted(() => {
       color: var(--color-black);
       background-color: #f2f2f2;
     }
+
+    a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #f2f2f2;
+      gap: 4px;
+
+      &:hover {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+    }
   }
 
   &__pagination {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 40px;
   }
 }
 </style>

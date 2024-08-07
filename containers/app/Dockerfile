@@ -1,14 +1,15 @@
-# Builder
-FROM node:16-alpine as node-builder
+FROM node:18-alpine3.17 as build
+
 WORKDIR /app
-COPY package*.json .env ./
-RUN npm ci --prefer-offline --legacy-peer-deps
+COPY . /app
+
+RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
+RUN apk add make g++
+RUN npm ci
 COPY . .
 RUN npm run build
 
-# Nginx
-FROM nginx:1.20.2-alpine as nginx-runtime
-COPY containers/nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=node-builder /app/dist /app/
-EXPOSE 8080
+FROM nginx:stable-alpine as production-stage
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
