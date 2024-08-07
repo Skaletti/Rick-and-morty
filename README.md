@@ -1,8 +1,10 @@
 # RICK_AND_MORTY
 
-https://rickandmortyapi.com/ - API 
+https://rickandmortyapi.com/ - API
 
-## NPM commands
+## Start project locally
+
+### NPM commands
 
 ### Install project's dependencies
 
@@ -28,8 +30,16 @@ npm run build
 npm run lint
 ```
 
-### Unit tests with [Vitest](https://vitest.dev/)
+## Start project with Docker
+
+### Compile and start docker container
 
 ```sh
-npm run test:unit
+docker-compose up -d --build
+```
+
+### Stop docker container
+
+```sh
+docker-compose down 
 ```
