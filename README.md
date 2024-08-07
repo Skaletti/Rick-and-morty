@@ -43,3 +43,7 @@ docker-compose up -d --build
 ```sh
 docker-compose down 
 ```
+
+
+
+https://github.com/user-attachments/assets/499e670b-740f-418f-8b75-3e956182ae14
