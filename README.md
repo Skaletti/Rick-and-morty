@@ -43,3 +43,11 @@ docker-compose up -d --build
 ```sh
 docker-compose down 
 ```
+
+## Test API
+
+### vitest command
+
+```sh
+npm test
+```
